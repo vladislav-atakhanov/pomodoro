@@ -27,12 +27,8 @@ export class Timer {
 		this._time = timeInMs
 
 		this.update(store => {
-			store.value = 0
 			store.isPaused = false
 			store.type = opts.type
-
-			this.value = 0
-
 			return store
 		})
 
@@ -147,6 +143,7 @@ export class Timer {
 
 		this.startTime = Date.now()
 		this.endTime = this.startTime + this._time
+		this.value = 0
 
 		this._startInterval()
 		this._dispatchEvent("start")

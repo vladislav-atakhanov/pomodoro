@@ -4,6 +4,9 @@ const types = {
 	},
 	end: {
 		title: "Помидор закончился"
+	},
+	start: {
+		title: "Проверка"
 	}
 }
 
@@ -22,19 +25,32 @@ export let Notificator = {
 			new Notification(title, opts)
 	},
 
+	_requestPermission(type) {
+		Notification.requestPermission(permission => {
+			if (!Notification.permission)
+				Notification.permission = permission
+
+			if (permission === "granted")
+				this._notify(type)
+		})
+	},
+
+	init() {
+		if (Notification.permission === "granted")
+			return
+
+		Notification.requestPermission(permission => {
+			if (!Notification.permission)
+				Notification.permission = permission
+		})
+	},
+
 	notify(type) {
 		if ('Notification' in window) {
-			if (Notification.permission === 'granted') {
+			if (Notification.permission === 'granted')
 				this._notify(type)
-			} else if (Notification.permission === 'denied') {
-				Notification.requestPermission(permission => {
-					if (!Notification.permission)
-						Notificator.permission = permission
-
-					if (permission === "granted")
-						this._notify(type)
-				})
-			}
+			else
+				this._requestPermission(type)
 		}
 	}
 }

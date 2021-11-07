@@ -1,11 +1,8 @@
 <script>
 import WorkingCircle from "./working-circle.svelte"
 import BreakCircle from "./break-circle.svelte"
-import { msToTime } from "../utils";
 
 export let timer
-
-$: time = msToTime($timer.leftTime, true)
 
 function click() {
 	timer.change()
@@ -18,14 +15,11 @@ function click() {
 		progress={$timer.value}
 		class="pomodoro__circle pomodoro__circle--break"
 	/>
-
 	<WorkingCircle
 		progress={$timer.value}
 		class="pomodoro__circle pomodoro__circle--working"
 		on:click={click}
 	/>
-
-	{time.minutes}:{time.seconds}
 </div>
 
 <style>
@@ -33,6 +27,10 @@ function click() {
 	width: 90%;
 	max-width: 250px;
 	display: grid;
+
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
 }
 :global(.pomodoro__circle) {
 	opacity: 0;

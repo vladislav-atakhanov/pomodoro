@@ -1,42 +1,40 @@
 import { Timer } from "./timer"
+import { Stats } from "./stats"
 import { Keyboard } from "./keyboard"
 import { Notificator } from "./notificator"
-import { writable } from "svelte/store"
 
 export let timer = new Timer()
-export let completed = writable(0)
+export let stats = new Stats(0)
 
-// Notificator.opts = {debug: true}
+Notificator.opts = {debug: true}
 
 const workingTimer = [
-	30 * 60 * 1000, {
+	30 * 60 * 1, {
 		isWorking: 5 / 6,
 		type: "working"
 	}
 ]
 
 const breakTimer = [
-	15 * 60 * 1000, {
+	15 * 60 * 1, {
 		isWorking: 0,
 		type: "break"
 	}
 ]
+
+Notificator.init()
 
 timer.init(...workingTimer)
 
 timer.onworkend = event => {
 	Notificator.notify(event.type)
 }
+const cycleLength = 5
 timer.onend = event => {
-	let completedCount
-	completed.update(store => {
-		completedCount = store + 1
-		return completedCount
-	})
-
-	if (completedCount % 4 == 0)
+	let complited = ++stats.value % cycleLength
+	if (complited == cycleLength - 1)
 		timer.init(...breakTimer).start()
-	else if (completedCount != 1 && completedCount % 4 == 1)
+	else
 		timer.init(...workingTimer)
 
 	Notificator.notify(event.type)
