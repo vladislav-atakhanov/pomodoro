@@ -16,11 +16,11 @@ body {
 
 :root {
 	--working-color: hsl(10, 100%, 50%);
-	--working-background-color: hsl(10, 100%, 90%);
+	--working-background: hsl(20, 100%, 90%) 50%;
 
 	--break-color: hsl(75, 50%, 50%);
-	--break-background-color: hsl(75, 50%, 90%);
+	--break-background: hsl(75, 50%, 90%);
 
-	--overlay-background-color: rgb(255 255 255 / .5);
+	--overlay-background: rgb(255 255 255 / .5);
 	--overlay-color: #333;
 }

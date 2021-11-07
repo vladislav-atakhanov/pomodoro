@@ -13,7 +13,7 @@ export let isPaused
 	position: absolute;
 	top: 0; left: 0;
 	bottom: 0; right: 0;
-	background-color: var(--overlay-background-color);
+	background: var(--overlay-background);
 	color: var(--overlay-color);
 	z-index: 1;
 	transition: all .5s;

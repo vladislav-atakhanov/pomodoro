@@ -32,9 +32,9 @@ import Pause from "./components/pause.svelte"
 }
 
 .app--working {
-	background-color: var(--working-background-color);
+	background: var(--working-background)
 }
 .app--break {
-	background-color: var(--break-background-color);
+	background: var(--break-background);
 }
 </style>
