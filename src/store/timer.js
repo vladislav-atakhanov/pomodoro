@@ -78,6 +78,15 @@ export class Timer {
 	set isStarted(value) {localStorage.setItem("isStarted", JSON.stringify(value))}
 	get isStarted() {return JSON.parse(localStorage.getItem("isStarted"))}
 
+	get isWorking() {
+		let value
+		this.update(store => {
+			value = store.isWorking
+			return store
+		})
+		return value
+	}
+
 	set isPaused(value) {
 		localStorage.setItem("isPaused", JSON.stringify(value))
 		this.update(store => {
@@ -172,6 +181,7 @@ export class Timer {
 	// TODO
 	// Придумать нормальное название функции
 	change() {
+		console.log("Hello");
 		if (this.isPaused)
 			this.unpause()
 		else if (this.isStarted) {
