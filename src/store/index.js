@@ -6,17 +6,17 @@ import { Notificator } from "./notificator"
 export let timer = new Timer()
 export let stats = new Stats(0)
 
-Notificator.opts = {debug: true}
+// Notificator.opts = {debug: true}
 
 const workingTimer = [
-	30 * 60 * 1, {
+	30 * 60 * 1000, {
 		isWorking: 5 / 6,
 		type: "working"
 	}
 ]
 
 const breakTimer = [
-	15 * 60 * 1, {
+	15 * 60 * 1000, {
 		isWorking: 0,
 		type: "break"
 	}

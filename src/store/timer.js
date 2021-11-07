@@ -11,13 +11,13 @@ export class Timer {
 		this._store = writable({
 			isPaused: null,
 			value: null,
-			isWorking: null,
 			leftTime: null,
 			type: null
 		})
 
 		this.subscribe = this._store.subscribe
 		this.update = this._store.update
+		this.set = this._store.set
 
 		this._eventListeners = {}
 	}
@@ -28,6 +28,8 @@ export class Timer {
 
 		this.update(store => {
 			store.isPaused = false
+			store.time = this._time
+			store.isWorkingCondition = opts.isWorking
 			store.type = opts.type
 			return store
 		})
@@ -95,21 +97,12 @@ export class Timer {
 	get pausedTime() {return JSON.parse(localStorage.getItem("pausedTime"))}
 
 	set value(value) {
-		this.isWorking = value < this.opts.isWorking
-		let prevIsWorking
 
 		this.update(store => {
-			prevIsWorking = store.isWorking
-
 			store.value = value
-			store.isWorking = this.isWorking
 			store.leftTime = this._time * (1 - value)
-
 			return store
 		})
-
-		if (prevIsWorking != this.isWorking)
-			this._dispatchEvent(this.isWorking ? "workstart" : "workend")
 	}
 	get value() {
 		const time = this.isPaused ? this.pausedTime : Date.now()

@@ -34,7 +34,6 @@ export function msToTime(duration, zero=false) {
 		minutes++
 	}
 
-
 	if (zero) {
 		minutes = (minutes < 10) ? "0" + minutes : minutes
 		seconds = (seconds < 10) ? "0" + seconds : seconds
