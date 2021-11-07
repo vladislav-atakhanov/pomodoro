@@ -16,7 +16,7 @@ body {
 
 :root {
 	--working-color: hsl(10, 100%, 50%);
-	--working-background: hsl(20, 100%, 90%) 50%;
+	--working-background: hsl(20, 100%, 90%);
 
 	--break-color: hsl(75, 50%, 50%);
 	--break-background: hsl(75, 50%, 90%);
