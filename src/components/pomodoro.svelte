@@ -74,7 +74,7 @@ function click() {
 	grid-gap: .5em;
 	line-height: 1;
 	font-size: 24px;
-	color: rgb(0 0 0 / .5)
+	color: rgb(0 0 0 / .5);
 }
 .left-time__marker {
 	content: ">";
@@ -89,10 +89,10 @@ function click() {
 	transform: translateY(1.5em);
 }
 .pomodoro--working-true .left-time__value--working {
-	color: var(--working-color)
+	color: var(--working-color);
 }
 .pomodoro--working-false .left-time__value--break {
-	color: var(--break-color)
+	color: var(--break-color);
 }
 
 :global(.pomodoro__circle) {
